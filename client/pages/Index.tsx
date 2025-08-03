@@ -341,12 +341,12 @@ export default function Index() {
                 >
                   Hi, I'm{" "}
                   <motion.span
-                    className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent"
+                    className="bg-gradient-to-r from-white via-cyan-200 to-white bg-clip-text text-transparent inline-block"
                     animate={{
                       backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
                     }}
                     transition={{
-                      duration: 3,
+                      duration: 6,
                       repeat: Infinity,
                       ease: "linear"
                     }}
@@ -360,14 +360,16 @@ export default function Index() {
                 </motion.h3>
 
                 <motion.p
-                  className="text-base lg:text-lg text-gray-300 leading-relaxed text-left max-w-2xl"
+                  className="text-base lg:text-lg text-gray-300 leading-relaxed text-left max-w-2xl mb-8"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.7 }}
                 >
-                  I'm a passionate Full Stack Developer with a deep interest in{" "}
+                  A passionate <span className="text-cyan-400 font-semibold">Full Stack Developer</span> and{" "}
+                  <span className="text-purple-400 font-semibold">Digital Architect</span> who transforms complex ideas into elegant,
+                  scalable solutions. With expertise spanning{" "}
                   <motion.span
-                    className="text-purple-400 font-semibold relative"
+                    className="text-purple-400 font-semibold relative cursor-pointer"
                     whileHover={{ scale: 1.05 }}
                   >
                     Blockchain
@@ -375,22 +377,102 @@ export default function Index() {
                   </motion.span>
                   ,{" "}
                   <motion.span
-                    className="text-cyan-400 font-semibold relative"
+                    className="text-cyan-400 font-semibold relative cursor-pointer"
                     whileHover={{ scale: 1.05 }}
                   >
-                    AI
+                    Artificial Intelligence
                     <motion.div className="absolute -inset-1 bg-cyan-400/20 blur-sm opacity-0 hover:opacity-100 transition-opacity" />
                   </motion.span>
                   , and immersive{" "}
                   <motion.span
-                    className="text-pink-400 font-semibold relative"
+                    className="text-pink-400 font-semibold relative cursor-pointer"
                     whileHover={{ scale: 1.05 }}
                   >
                     3D web experiences
                     <motion.div className="absolute -inset-1 bg-pink-400/20 blur-sm opacity-0 hover:opacity-100 transition-opacity" />
                   </motion.span>
-                  . I build clean, scalable applications and love exploring how technology can solve real-world problems.
+                  , I craft digital experiences that push the boundaries of what's possible on the web.
                 </motion.p>
+
+                <motion.p
+                  className="text-sm lg:text-base text-gray-400 leading-relaxed text-left max-w-2xl italic"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.9 }}
+                >
+                  From concept to deployment, I believe in building not just applications, but digital ecosystems
+                  that empower users and solve real-world challenges through innovative technology.
+                </motion.p>
+
+                {/* Horizontal Scrolling Tools Animation */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 1.1 }}
+                  className="mt-8"
+                >
+                  <h4 className="text-sm font-semibold text-gray-400 mb-4 uppercase tracking-wider">
+                    Technologies & Tools
+                  </h4>
+                  <div className="relative overflow-hidden rounded-lg bg-white/5 border border-white/10 p-4">
+                    <motion.div
+                      className="flex space-x-8 items-center"
+                      animate={{
+                        x: [0, -1200],
+                      }}
+                      transition={{
+                        duration: 20,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                    >
+                      {/* First set of tools */}
+                      {[
+                        { name: "React", icon: "⚛️", color: "text-blue-400" },
+                        { name: "TypeScript", icon: "📘", color: "text-blue-600" },
+                        { name: "Node.js", icon: "🟢", color: "text-green-400" },
+                        { name: "Python", icon: "🐍", color: "text-yellow-400" },
+                        { name: "Next.js", icon: "▲", color: "text-white" },
+                        { name: "PostgreSQL", icon: "🐘", color: "text-blue-500" },
+                        { name: "MongoDB", icon: "🍃", color: "text-green-500" },
+                        { name: "Docker", icon: "🐳", color: "text-blue-400" },
+                        { name: "AWS", icon: "☁️", color: "text-orange-400" },
+                        { name: "Git", icon: "📝", color: "text-orange-500" },
+                        { name: "GraphQL", icon: "🔗", color: "text-pink-400" },
+                        { name: "Prisma", icon: "💎", color: "text-indigo-400" },
+                        { name: "Tailwind", icon: "🎨", color: "text-cyan-400" },
+                        { name: "Framer Motion", icon: "✨", color: "text-purple-400" },
+                        { name: "Three.js", icon: "🎲", color: "text-yellow-300" },
+                        { name: "Solidity", icon: "💰", color: "text-gray-300" },
+                        { name: "Web3", icon: "🌐", color: "text-blue-300" },
+                        { name: "AI/ML", icon: "🤖", color: "text-green-300" },
+                      ].concat([
+                        // Duplicate for seamless loop
+                        { name: "React", icon: "⚛️", color: "text-blue-400" },
+                        { name: "TypeScript", icon: "📘", color: "text-blue-600" },
+                        { name: "Node.js", icon: "🟢", color: "text-green-400" },
+                        { name: "Python", icon: "🐍", color: "text-yellow-400" },
+                        { name: "Next.js", icon: "▲", color: "text-white" },
+                        { name: "PostgreSQL", icon: "🐘", color: "text-blue-500" },
+                        { name: "MongoDB", icon: "🍃", color: "text-green-500" },
+                        { name: "Docker", icon: "🐳", color: "text-blue-400" },
+                        { name: "AWS", icon: "☁️", color: "text-orange-400" },
+                        { name: "Git", icon: "📝", color: "text-orange-500" },
+                      ]).map((tool, index) => (
+                        <motion.div
+                          key={`${tool.name}-${index}`}
+                          className="flex-shrink-0 flex items-center space-x-3 px-4 py-2 bg-white/5 rounded-full border border-white/10 hover:border-cyan-400/50 transition-colors duration-300"
+                          whileHover={{ scale: 1.05, y: -2 }}
+                        >
+                          <span className="text-xl">{tool.icon}</span>
+                          <span className={`text-sm font-medium ${tool.color} whitespace-nowrap`}>
+                            {tool.name}
+                          </span>
+                        </motion.div>
+                      ))}
+                    </motion.div>
+                  </div>
+                </motion.div>
               </div>
 
               {/* Info Cards Grid */}
