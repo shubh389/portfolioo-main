@@ -125,7 +125,11 @@ export function MobileNav({ activeSection, scrollToSection }: MobileNavProps) {
                 stiffness: 300,
                 opacity: { duration: 0.2 }
               }}
-              className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-black/95 backdrop-blur-xl border-l border-white/20 z-40 flex flex-col shadow-2xl shadow-cyan-500/10"
+              className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] backdrop-blur-xl border-l z-40 flex flex-col shadow-2xl ${
+                theme === 'dark'
+                  ? 'bg-black/95 border-white/20 shadow-cyan-500/10'
+                  : 'bg-white/95 border-black/20 shadow-black/10'
+              }`}
             >
               {/* Enhanced Header */}
               <motion.div
