@@ -25,7 +25,7 @@ export const handleSendEmail: RequestHandler = async (req, res) => {
   try {
     // Validate request body
     const validatedData = emailSchema.parse(req.body);
-    
+
     const { name, email, subject, message } = validatedData;
 
     // Create mailto link (client-side email sending)
@@ -47,7 +47,7 @@ This email was sent from your portfolio contact form.
     // - Nodemailer with SMTP
     // - Resend
     // - EmailJS
-    
+
     // For now, we'll return the mailto URL for client-side handling
     const mailtoUrl = `mailto:shubhamdev9128@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
 
@@ -64,12 +64,11 @@ This email was sent from your portfolio contact form.
         subject: emailSubject,
         from: `${name} <${email}>`,
         message: emailBody,
-      }
+      },
     });
-
   } catch (error) {
     console.error("Email sending error:", error);
-    
+
     if (error instanceof z.ZodError) {
       return res.status(400).json({
         success: false,

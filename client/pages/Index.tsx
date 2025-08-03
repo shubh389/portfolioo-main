@@ -151,12 +151,14 @@ export default function Index() {
   };
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
   const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus('idle');
+    setSubmitStatus("idle");
 
     const formData = new FormData(e.currentTarget);
     const name = formData.get("name") as string;
@@ -165,10 +167,10 @@ export default function Index() {
     const message = formData.get("message") as string;
 
     try {
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
+      const response = await fetch("/api/send-email", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           name,
@@ -181,7 +183,7 @@ export default function Index() {
       const result = await response.json();
 
       if (result.success) {
-        setSubmitStatus('success');
+        setSubmitStatus("success");
         // Open mailto link as backup/primary method
         if (result.mailtoUrl) {
           window.location.href = result.mailtoUrl;
@@ -189,12 +191,12 @@ export default function Index() {
         // Reset form
         (e.target as HTMLFormElement).reset();
       } else {
-        setSubmitStatus('error');
-        console.error('Email sending failed:', result.message);
+        setSubmitStatus("error");
+        console.error("Email sending failed:", result.message);
       }
     } catch (error) {
-      setSubmitStatus('error');
-      console.error('Error sending email:', error);
+      setSubmitStatus("error");
+      console.error("Error sending email:", error);
 
       // Fallback to mailto
       const mailtoSubject = subject || `Project Inquiry from ${name}`;
@@ -204,7 +206,7 @@ export default function Index() {
     } finally {
       setIsSubmitting(false);
       // Reset status after 3 seconds
-      setTimeout(() => setSubmitStatus('idle'), 3000);
+      setTimeout(() => setSubmitStatus("idle"), 3000);
     }
   };
 
@@ -339,7 +341,8 @@ export default function Index() {
                   transition={{ duration: 0.3 }}
                   style={{
                     borderRadius: "100px 20px 100px 20px",
-                    background: "linear-gradient(135deg, #06b6d4 0%, #a855f7 50%, #ec4899 100%)",
+                    background:
+                      "linear-gradient(135deg, #06b6d4 0%, #a855f7 50%, #ec4899 100%)",
                     padding: "3px",
                   }}
                 >
@@ -1059,11 +1062,11 @@ export default function Index() {
                       type="submit"
                       disabled={isSubmitting}
                       className={`w-full transition-all duration-300 transform hover:scale-105 py-2 sm:py-3 ${
-                        submitStatus === 'success'
-                          ? 'bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700'
-                          : submitStatus === 'error'
-                          ? 'bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700'
-                          : 'bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700'
+                        submitStatus === "success"
+                          ? "bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700"
+                          : submitStatus === "error"
+                            ? "bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700"
+                            : "bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700"
                       } disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none`}
                     >
                       {isSubmitting ? (
@@ -1071,24 +1074,36 @@ export default function Index() {
                           <motion.div
                             className="h-4 w-4 sm:h-5 sm:w-5 mr-2 border-2 border-white border-t-transparent rounded-full"
                             animate={{ rotate: 360 }}
-                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                            transition={{
+                              duration: 1,
+                              repeat: Infinity,
+                              ease: "linear",
+                            }}
                           />
-                          <span className="text-sm sm:text-base">Sending...</span>
+                          <span className="text-sm sm:text-base">
+                            Sending...
+                          </span>
                         </>
-                      ) : submitStatus === 'success' ? (
+                      ) : submitStatus === "success" ? (
                         <>
                           <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-                          <span className="text-sm sm:text-base">Message Sent!</span>
+                          <span className="text-sm sm:text-base">
+                            Message Sent!
+                          </span>
                         </>
-                      ) : submitStatus === 'error' ? (
+                      ) : submitStatus === "error" ? (
                         <>
                           <Send className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-                          <span className="text-sm sm:text-base">Try Again</span>
+                          <span className="text-sm sm:text-base">
+                            Try Again
+                          </span>
                         </>
                       ) : (
                         <>
                           <Send className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-                          <span className="text-sm sm:text-base">Send Message</span>
+                          <span className="text-sm sm:text-base">
+                            Send Message
+                          </span>
                         </>
                       )}
                     </Button>
