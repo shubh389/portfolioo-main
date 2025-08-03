@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Home, User, Code, Briefcase, Mail, Download, Github, Globe, Sun, Moon } from "lucide-react";
+import { Menu, X, Home, User, Code, Briefcase, Mail, Download, Github, Globe } from "lucide-react";
 import { Button } from "./button";
-import { useTheme } from "@/contexts/ThemeContext";
 
 interface MobileNavProps {
   activeSection: string;
