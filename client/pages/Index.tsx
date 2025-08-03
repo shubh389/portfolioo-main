@@ -1057,10 +1057,40 @@ export default function Index() {
                     {/* Submit Button */}
                     <Button
                       type="submit"
-                      className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 py-2 sm:py-3"
+                      disabled={isSubmitting}
+                      className={`w-full transition-all duration-300 transform hover:scale-105 py-2 sm:py-3 ${
+                        submitStatus === 'success'
+                          ? 'bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700'
+                          : submitStatus === 'error'
+                          ? 'bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700'
+                          : 'bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700'
+                      } disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none`}
                     >
-                      <Send className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-                      <span className="text-sm sm:text-base">Send Message</span>
+                      {isSubmitting ? (
+                        <>
+                          <motion.div
+                            className="h-4 w-4 sm:h-5 sm:w-5 mr-2 border-2 border-white border-t-transparent rounded-full"
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                          />
+                          <span className="text-sm sm:text-base">Sending...</span>
+                        </>
+                      ) : submitStatus === 'success' ? (
+                        <>
+                          <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+                          <span className="text-sm sm:text-base">Message Sent!</span>
+                        </>
+                      ) : submitStatus === 'error' ? (
+                        <>
+                          <Send className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+                          <span className="text-sm sm:text-base">Try Again</span>
+                        </>
+                      ) : (
+                        <>
+                          <Send className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+                          <span className="text-sm sm:text-base">Send Message</span>
+                        </>
+                      )}
                     </Button>
                   </form>
                 </CardContent>
