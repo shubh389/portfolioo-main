@@ -175,16 +175,12 @@ export default function Index() {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-500 overflow-x-hidden ${
-      theme === 'dark'
-        ? 'bg-black text-white'
-        : 'bg-white text-gray-900'
-    }`}>
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Particle Background */}
       <ParticleBackground />
 
-      {/* Enhanced Navigation */}
-      <EnhancedNavbar
+      {/* Simple Navigation */}
+      <SimpleNavbar
         activeSection={activeSection}
         isScrolled={isScrolled}
         scrollToSection={scrollToSection}
