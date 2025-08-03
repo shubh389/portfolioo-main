@@ -118,7 +118,7 @@ export function SimpleNavbar({
                 </Button>
               </motion.div>
 
-              {/* Download CV Button */}
+              {/* Download Resume Button */}
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -128,7 +128,14 @@ export function SimpleNavbar({
                   size="sm"
                   className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white border-0"
                   onClick={() => {
-                    console.log("Download CV");
+                    const resumeUrl = "https://cdn.builder.io/o/assets%2Fc8e502a783604533b5c478ab95726ead%2Fa79e0aec110549e39c96d3057a365cbd?alt=media&token=dfc2a09a-9669-495c-9c26-7c1e8267124d&apiKey=c8e502a783604533b5c478ab95726ead";
+                    const link = document.createElement('a');
+                    link.href = resumeUrl;
+                    link.download = 'Shubham_Dev_Resume.pdf';
+                    link.target = '_blank';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
                   }}
                 >
                   <Download className="h-4 w-4 mr-2" />
