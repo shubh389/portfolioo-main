@@ -260,34 +260,35 @@ export default function Index() {
             </div>
 
             {/* Enhanced Action Buttons */}
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2 lg:space-x-3">
               {/* Theme indicator */}
               <motion.div
-                className="hidden md:flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30"
+                className="hidden sm:flex items-center justify-center w-7 h-7 lg:w-8 lg:h-8 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30"
                 whileHover={{ scale: 1.1, rotate: 180 }}
                 transition={{ duration: 0.3 }}
                 title="Dark theme active"
               >
-                <div className="w-3 h-3 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500" />
+                <div className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500" />
               </motion.div>
 
               {/* Enhanced Contact Button */}
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="hidden md:block"
+                className="hidden sm:block"
               >
                 <Button
                   variant="outline"
                   size="sm"
-                  className="relative overflow-hidden border-cyan-500/50 text-cyan-400 hover:text-white bg-transparent hover:border-cyan-400 group"
+                  className="relative overflow-hidden border-cyan-500/50 text-cyan-400 hover:text-white bg-transparent hover:border-cyan-400 group text-xs lg:text-sm px-3 lg:px-4"
                   onClick={() => scrollToSection("contact")}
                 >
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"
                   />
-                  <Mail className="h-4 w-4 mr-2 relative z-10" />
-                  <span className="relative z-10">Let's Talk</span>
+                  <Mail className="h-3 w-3 lg:h-4 lg:w-4 mr-1 lg:mr-2 relative z-10" />
+                  <span className="relative z-10 hidden lg:inline">Let's Talk</span>
+                  <span className="relative z-10 lg:hidden">Talk</span>
                 </Button>
               </motion.div>
 
@@ -295,7 +296,7 @@ export default function Index() {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="hidden lg:block"
+                className="hidden md:block"
               >
                 <Button
                   size="sm"
