@@ -177,169 +177,21 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+    <div className={`min-h-screen transition-colors duration-500 overflow-x-hidden ${
+      theme === 'dark'
+        ? 'bg-black text-white'
+        : 'bg-white text-gray-900'
+    }`}>
       {/* Particle Background */}
       <ParticleBackground />
 
-      {/* Progress Bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 z-50"
-        style={{ scaleX: scrollYProgress, transformOrigin: "0%" }}
-      />
-
       {/* Enhanced Navigation */}
-      <motion.nav
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
-          isScrolled
-            ? "bg-black/90 backdrop-blur-xl border-b border-white/20 shadow-lg shadow-cyan-500/10"
-            : "bg-transparent"
-        }`}
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-20">
-            {/* Enhanced Logo with animation */}
-            <motion.div
-              className="relative group cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => scrollToSection("home")}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-lg blur-sm opacity-0 group-hover:opacity-30 transition-opacity duration-300" />
-              <div className="relative text-2xl lg:text-3xl font-bold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                <span className="tracking-tight">Shubham</span>
-                <motion.span
-                  className="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full"
-                  animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  title="Available for work"
-                />
-              </div>
-            </motion.div>
-
-            {/* Enhanced Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
-              {["Home", "About", "Skills", "Projects", "Contact"].map(
-                (item) => (
-                  <motion.button
-                    key={item}
-                    onClick={() => scrollToSection(item.toLowerCase())}
-                    className={`relative px-3 py-2 text-xs lg:text-sm font-medium transition-all duration-300 rounded-lg group ${
-                      activeSection === item.toLowerCase()
-                        ? "text-cyan-400"
-                        : "text-white/70 hover:text-white"
-                    }`}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {/* Background glow effect */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      layoutId={`nav-bg-${item}`}
-                    />
-
-                    {/* Text */}
-                    <span className="relative z-10">{item}</span>
-
-                    {/* Active indicator */}
-                    {activeSection === item.toLowerCase() && (
-                      <motion.div
-                        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 lg:w-8 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full"
-                        layoutId="activeIndicator"
-                        initial={false}
-                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                      />
-                    )}
-
-                    {/* Hover indicator */}
-                    <motion.div
-                      className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400/50 to-purple-500/50 rounded-full group-hover:w-4 lg:group-hover:w-6 transition-all duration-300"
-                    />
-                  </motion.button>
-                ),
-              )}
-            </div>
-
-            {/* Enhanced Action Buttons */}
-            <div className="flex items-center space-x-2 lg:space-x-3">
-              {/* Theme indicator */}
-              <motion.div
-                className="hidden sm:flex items-center justify-center w-7 h-7 lg:w-8 lg:h-8 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30"
-                whileHover={{ scale: 1.1, rotate: 180 }}
-                transition={{ duration: 0.3 }}
-                title="Dark theme active"
-              >
-                <div className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500" />
-              </motion.div>
-
-              {/* Enhanced Contact Button */}
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="hidden sm:block"
-              >
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="relative overflow-hidden border-cyan-500/50 text-cyan-400 hover:text-white bg-transparent hover:border-cyan-400 group text-xs lg:text-sm px-3 lg:px-4"
-                  onClick={() => scrollToSection("contact")}
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"
-                  />
-                  <Mail className="h-3 w-3 lg:h-4 lg:w-4 mr-1 lg:mr-2 relative z-10" />
-                  <span className="relative z-10 hidden lg:inline">Let's Talk</span>
-                  <span className="relative z-10 lg:hidden">Talk</span>
-                </Button>
-              </motion.div>
-
-              {/* Download CV Button */}
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="hidden md:block"
-              >
-                <Button
-                  size="sm"
-                  className="relative overflow-hidden bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white border-0 group text-xs lg:text-sm px-3 lg:px-4"
-                  onClick={() => {
-                    // Add CV download logic here
-                    console.log('Download CV');
-                  }}
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-white/20 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300"
-                  />
-                  <Download className="h-3 w-3 lg:h-4 lg:w-4 mr-1 lg:mr-2 relative z-10" />
-                  <span className="relative z-10 hidden lg:inline">Resume</span>
-                  <span className="relative z-10 lg:hidden">CV</span>
-                </Button>
-              </motion.div>
-
-              {/* Enhanced Mobile Navigation */}
-              <MobileNav
-                activeSection={activeSection}
-                scrollToSection={scrollToSection}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Navigation Progress Bar */}
-        <motion.div
-          className="absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-cyan-400 to-purple-500"
-          style={{
-            width: `${(Object.keys(["home", "about", "skills", "projects", "contact"]).indexOf(activeSection) + 1) * 20}%`,
-          }}
-          initial={{ width: "0%" }}
-          animate={{
-            width: `${(Object.keys(["home", "about", "skills", "projects", "contact"]).indexOf(activeSection) + 1) * 20}%`,
-          }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-        />
-      </motion.nav>
+      <EnhancedNavbar
+        activeSection={activeSection}
+        isScrolled={isScrolled}
+        scrollToSection={scrollToSection}
+        scrollYProgress={scrollYProgress}
+      />
 
       {/* Simplified Hero Section */}
       <SimplifiedHero scrollToSection={scrollToSection} />
