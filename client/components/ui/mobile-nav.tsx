@@ -104,9 +104,7 @@ export function MobileNav({ activeSection, scrollToSection }: MobileNavProps) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className={`fixed inset-0 backdrop-blur-md z-40 ${
-                theme === 'dark' ? 'bg-black/90' : 'bg-white/90'
-              }`}
+              className="fixed inset-0 bg-black/90 backdrop-blur-md z-40"
               onClick={() => setIsOpen(false)}
             />
 
