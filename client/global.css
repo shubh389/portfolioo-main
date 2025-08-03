@@ -96,10 +96,25 @@
   body {
     @apply bg-background text-foreground;
     scroll-behavior: smooth;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Light mode styles */
+  .light {
+    /* Custom scrollbar for light mode */
+    scrollbar-color: #06b6d4 #f1f5f9;
+  }
+
+  .light ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #06b6d4, #a855f7);
+  }
+
+  .light ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #0891b2, #9333ea);
   }
 
   /* Custom scrollbar */
