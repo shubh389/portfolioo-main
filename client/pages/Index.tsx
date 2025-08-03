@@ -289,13 +289,13 @@ export default function Index() {
                   />
                 ))}
 
-                {/* Main Photo Container with Enhanced Curves */}
+                {/* Main Photo Container with Two Opposite Side Curves */}
                 <motion.div
                   className="relative w-80 h-80 sm:w-96 sm:h-96 mx-auto shadow-2xl"
                   whileHover={{ scale: 1.02, rotate: 1 }}
                   transition={{ duration: 0.3 }}
                   style={{
-                    borderRadius: "50px 80px 50px 80px",
+                    borderRadius: "100px 20px 100px 20px",
                     background: "linear-gradient(135deg, #06b6d4 0%, #a855f7 50%, #ec4899 100%)",
                     padding: "3px",
                   }}
@@ -303,7 +303,7 @@ export default function Index() {
                   <div
                     className="w-full h-full bg-black p-2 relative overflow-hidden"
                     style={{
-                      borderRadius: "47px 77px 47px 77px",
+                      borderRadius: "97px 17px 97px 17px",
                     }}
                   >
                     {/* Profile Photo */}
@@ -312,7 +312,7 @@ export default function Index() {
                       alt="Shubham Dev - Full Stack Developer"
                       className="w-full h-full object-cover object-center shadow-xl"
                       style={{
-                        borderRadius: "45px 75px 45px 75px",
+                        borderRadius: "95px 15px 95px 15px",
                       }}
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.3 }}
@@ -323,7 +323,7 @@ export default function Index() {
                     <div
                       className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"
                       style={{
-                        borderRadius: "45px 75px 45px 75px",
+                        borderRadius: "95px 15px 95px 15px",
                       }}
                     />
 
