@@ -484,49 +484,7 @@ export default function Index() {
                 </div>
               </motion.div>
 
-              {/* Interactive Buttons */}
-              <motion.div
-                className="flex flex-col sm:flex-row gap-4 pt-6"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1.3 }}
-              >
-                <motion.button
-                  className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white rounded-xl font-semibold overflow-hidden"
-                  whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(6, 182, 212, 0.3)" }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => scrollToSection('contact')}
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: "0%" }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <span className="relative z-10 flex items-center gap-2">
-                    <Mail className="h-5 w-5" />
-                    Let's Talk
-                  </span>
-                </motion.button>
 
-                <motion.button
-                  className="group relative px-8 py-4 border-2 border-cyan-400/50 text-cyan-400 rounded-xl font-semibold overflow-hidden hover:text-white transition-colors"
-                  whileHover={{ scale: 1.05, borderColor: "#06b6d4" }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => console.log('Download Resume')}
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20"
-                    initial={{ scale: 0 }}
-                    whileHover={{ scale: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <span className="relative z-10 flex items-center gap-2">
-                    <Download className="h-5 w-5" />
-                    Resume
-                  </span>
-                </motion.button>
-              </motion.div>
             </motion.div>
           </div>
         </div>
