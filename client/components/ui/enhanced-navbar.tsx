@@ -17,7 +17,7 @@ import {
   MessageCircle,
   Github,
   Linkedin,
-  Twitter
+  Twitter,
 } from "lucide-react";
 
 interface EnhancedNavbarProps {
@@ -27,11 +27,11 @@ interface EnhancedNavbarProps {
   scrollYProgress: any;
 }
 
-export function EnhancedNavbar({ 
-  activeSection, 
-  isScrolled, 
-  scrollToSection, 
-  scrollYProgress 
+export function EnhancedNavbar({
+  activeSection,
+  isScrolled,
+  scrollToSection,
+  scrollYProgress,
 }: EnhancedNavbarProps) {
   const { theme, toggleTheme } = useTheme();
   const [showSocials, setShowSocials] = useState(false);
@@ -46,8 +46,18 @@ export function EnhancedNavbar({
 
   const socialLinks = [
     { icon: Github, href: "#", label: "GitHub", color: "hover:text-gray-600" },
-    { icon: Linkedin, href: "#", label: "LinkedIn", color: "hover:text-blue-600" },
-    { icon: Twitter, href: "#", label: "Twitter", color: "hover:text-blue-400" },
+    {
+      icon: Linkedin,
+      href: "#",
+      label: "LinkedIn",
+      color: "hover:text-blue-600",
+    },
+    {
+      icon: Twitter,
+      href: "#",
+      label: "Twitter",
+      color: "hover:text-blue-400",
+    },
   ];
 
   return (
@@ -62,7 +72,7 @@ export function EnhancedNavbar({
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-700 ${
           isScrolled
-            ? theme === 'dark'
+            ? theme === "dark"
               ? "bg-black/95 backdrop-blur-2xl border-b border-white/10 shadow-2xl shadow-cyan-500/5"
               : "bg-white/95 backdrop-blur-2xl border-b border-black/10 shadow-2xl shadow-black/5"
             : "bg-transparent"
@@ -73,7 +83,6 @@ export function EnhancedNavbar({
       >
         <div className="max-w-8xl mx-auto px-3 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
-            
             {/* Enhanced Logo */}
             <motion.div
               className="relative group cursor-pointer"
@@ -83,13 +92,14 @@ export function EnhancedNavbar({
             >
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-xl blur-md opacity-0 group-hover:opacity-30 transition-opacity duration-500"
-                animate={{ 
-                  background: theme === 'dark' 
-                    ? "linear-gradient(to right, #06b6d4, #a855f7)" 
-                    : "linear-gradient(to right, #0891b2, #9333ea)" 
+                animate={{
+                  background:
+                    theme === "dark"
+                      ? "linear-gradient(to right, #06b6d4, #a855f7)"
+                      : "linear-gradient(to right, #0891b2, #9333ea)",
                 }}
               />
-              
+
               <div className="relative flex items-center gap-2 p-2 rounded-xl">
                 <motion.div
                   className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-lg bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center"
@@ -98,7 +108,7 @@ export function EnhancedNavbar({
                 >
                   <Zap className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-white" />
                 </motion.div>
-                
+
                 <div className="flex flex-col">
                   <motion.span
                     className={`text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent`}
@@ -108,15 +118,17 @@ export function EnhancedNavbar({
                     transition={{
                       duration: 8,
                       repeat: Infinity,
-                      ease: "linear"
+                      ease: "linear",
                     }}
                     style={{
-                      backgroundSize: "200% 200%"
+                      backgroundSize: "200% 200%",
                     }}
                   >
                     Shubham
                   </motion.span>
-                  <span className={`text-xs ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'} font-light tracking-wider`}>
+                  <span
+                    className={`text-xs ${theme === "dark" ? "text-gray-400" : "text-gray-600"} font-light tracking-wider`}
+                  >
                     Developer
                   </span>
                 </div>
@@ -124,9 +136,9 @@ export function EnhancedNavbar({
                 {/* Availability indicator */}
                 <motion.div
                   className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white shadow-lg"
-                  animate={{ 
-                    scale: [1, 1.2, 1], 
-                    opacity: [0.8, 1, 0.8] 
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.8, 1, 0.8],
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
                   title="Available for work"
@@ -144,8 +156,8 @@ export function EnhancedNavbar({
                     className={`relative px-4 py-2.5 text-sm font-medium transition-all duration-300 rounded-xl group flex items-center gap-2 ${
                       activeSection === item.id
                         ? "text-white"
-                        : theme === 'dark' 
-                          ? "text-gray-300 hover:text-white" 
+                        : theme === "dark"
+                          ? "text-gray-300 hover:text-white"
                           : "text-gray-600 hover:text-gray-900"
                     }`}
                     whileHover={{ scale: 1.05 }}
@@ -157,16 +169,20 @@ export function EnhancedNavbar({
                         className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl shadow-lg"
                         layoutId="activeNavBg"
                         initial={false}
-                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 30,
+                        }}
                       />
                     )}
 
                     {/* Hover background */}
                     <motion.div
                       className={`absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-                        theme === 'dark' 
-                          ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/20' 
-                          : 'bg-gradient-to-r from-cyan-500/10 to-purple-500/10'
+                        theme === "dark"
+                          ? "bg-gradient-to-r from-cyan-500/20 to-purple-500/20"
+                          : "bg-gradient-to-r from-cyan-500/10 to-purple-500/10"
                       }`}
                     />
 
@@ -179,27 +195,26 @@ export function EnhancedNavbar({
 
             {/* Action Buttons */}
             <div className="flex items-center space-x-2 sm:space-x-3">
-              
               {/* Theme Toggle */}
               <motion.button
                 onClick={toggleTheme}
                 className={`relative p-2 sm:p-2.5 lg:p-3 rounded-xl transition-all duration-500 group ${
-                  theme === 'dark'
-                    ? 'bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700'
-                    : 'bg-gray-100/50 hover:bg-gray-200/50 border border-gray-200'
+                  theme === "dark"
+                    ? "bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700"
+                    : "bg-gray-100/50 hover:bg-gray-200/50 border border-gray-200"
                 } backdrop-blur-sm`}
                 whileHover={{ scale: 1.05, rotate: 15 }}
                 whileTap={{ scale: 0.95 }}
-                title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+                title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
               >
                 <motion.div
                   className="relative w-5 h-5 sm:w-6 sm:h-6"
                   initial={false}
-                  animate={{ rotate: theme === 'dark' ? 0 : 180 }}
+                  animate={{ rotate: theme === "dark" ? 0 : 180 }}
                   transition={{ duration: 0.5, ease: "easeInOut" }}
                 >
                   <AnimatePresence mode="wait">
-                    {theme === 'dark' ? (
+                    {theme === "dark" ? (
                       <motion.div
                         key="moon"
                         initial={{ opacity: 0, rotate: -90 }}
@@ -228,9 +243,7 @@ export function EnhancedNavbar({
                 {/* Theme indicator glow */}
                 <motion.div
                   className={`absolute inset-0 rounded-xl ${
-                    theme === 'dark' 
-                      ? 'bg-blue-400/20' 
-                      : 'bg-yellow-400/20'
+                    theme === "dark" ? "bg-blue-400/20" : "bg-yellow-400/20"
                   } opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm`}
                 />
               </motion.button>
@@ -239,16 +252,18 @@ export function EnhancedNavbar({
               <motion.button
                 onClick={() => setShowSocials(!showSocials)}
                 className={`hidden sm:block relative p-2 sm:p-2.5 lg:p-3 rounded-xl transition-all duration-300 group ${
-                  theme === 'dark'
-                    ? 'bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700'
-                    : 'bg-gray-100/50 hover:bg-gray-200/50 border border-gray-200'
+                  theme === "dark"
+                    ? "bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700"
+                    : "bg-gray-100/50 hover:bg-gray-200/50 border border-gray-200"
                 } backdrop-blur-sm`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Palette className={`w-4 h-4 sm:w-5 sm:h-5 ${
-                  theme === 'dark' ? 'text-purple-400' : 'text-purple-600'
-                }`} />
+                <Palette
+                  className={`w-4 h-4 sm:w-5 sm:h-5 ${
+                    theme === "dark" ? "text-purple-400" : "text-purple-600"
+                  }`}
+                />
               </motion.button>
 
               {/* Social Links Dropdown */}
@@ -259,9 +274,9 @@ export function EnhancedNavbar({
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.8, y: -10 }}
                     className={`absolute top-full right-0 mt-2 p-2 rounded-xl ${
-                      theme === 'dark' 
-                        ? 'bg-gray-900/95 border-gray-700' 
-                        : 'bg-white/95 border-gray-200'
+                      theme === "dark"
+                        ? "bg-gray-900/95 border-gray-700"
+                        : "bg-white/95 border-gray-200"
                     } border backdrop-blur-xl shadow-2xl`}
                   >
                     <div className="flex gap-2">
@@ -272,9 +287,9 @@ export function EnhancedNavbar({
                           target="_blank"
                           rel="noopener noreferrer"
                           className={`p-2 rounded-lg transition-colors duration-200 ${
-                            theme === 'dark' 
-                              ? 'hover:bg-gray-800 text-gray-400' 
-                              : 'hover:bg-gray-100 text-gray-600'
+                            theme === "dark"
+                              ? "hover:bg-gray-800 text-gray-400"
+                              : "hover:bg-gray-100 text-gray-600"
                           } ${social.color}`}
                           whileHover={{ scale: 1.1, y: -2 }}
                           whileTap={{ scale: 0.95 }}
@@ -300,17 +315,17 @@ export function EnhancedNavbar({
                   variant="outline"
                   size="sm"
                   className={`relative overflow-hidden group text-xs sm:text-sm px-3 sm:px-4 lg:px-6 ${
-                    theme === 'dark'
-                      ? 'border-cyan-500/50 text-cyan-400 hover:text-white bg-transparent hover:border-cyan-400'
-                      : 'border-cyan-600/50 text-cyan-600 hover:text-white bg-transparent hover:border-cyan-500'
+                    theme === "dark"
+                      ? "border-cyan-500/50 text-cyan-400 hover:text-white bg-transparent hover:border-cyan-400"
+                      : "border-cyan-600/50 text-cyan-600 hover:text-white bg-transparent hover:border-cyan-500"
                   }`}
                   onClick={() => scrollToSection("contact")}
                 >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"
-                  />
+                  <motion.div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300" />
                   <Mail className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 relative z-10" />
-                  <span className="relative z-10 hidden lg:inline">Let's Talk</span>
+                  <span className="relative z-10 hidden lg:inline">
+                    Let's Talk
+                  </span>
                   <span className="relative z-10 lg:hidden">Talk</span>
                 </Button>
               </motion.div>
@@ -325,12 +340,10 @@ export function EnhancedNavbar({
                   size="sm"
                   className="relative overflow-hidden bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white border-0 group text-xs sm:text-sm px-3 sm:px-4 lg:px-6"
                   onClick={() => {
-                    console.log('Download CV');
+                    console.log("Download CV");
                   }}
                 >
-                  <motion.div
-                    className="absolute inset-0 bg-white/20 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300"
-                  />
+                  <motion.div className="absolute inset-0 bg-white/20 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300" />
                   <Download className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 relative z-10" />
                   <span className="relative z-10 hidden lg:inline">Resume</span>
                   <span className="relative z-10 lg:hidden">CV</span>
@@ -350,11 +363,11 @@ export function EnhancedNavbar({
         <motion.div
           className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 shadow-lg"
           style={{
-            width: `${(navigationItems.findIndex(item => item.id === activeSection) + 1) * (100 / navigationItems.length)}%`,
+            width: `${(navigationItems.findIndex((item) => item.id === activeSection) + 1) * (100 / navigationItems.length)}%`,
           }}
           initial={{ width: "0%" }}
           animate={{
-            width: `${(navigationItems.findIndex(item => item.id === activeSection) + 1) * (100 / navigationItems.length)}%`,
+            width: `${(navigationItems.findIndex((item) => item.id === activeSection) + 1) * (100 / navigationItems.length)}%`,
           }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         />

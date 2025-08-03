@@ -18,11 +18,11 @@ interface SimpleNavbarProps {
   scrollYProgress: any;
 }
 
-export function SimpleNavbar({ 
-  activeSection, 
-  isScrolled, 
-  scrollToSection, 
-  scrollYProgress 
+export function SimpleNavbar({
+  activeSection,
+  isScrolled,
+  scrollToSection,
+  scrollYProgress,
 }: SimpleNavbarProps) {
   const navigationItems = [
     { id: "home", label: "Home", icon: Home },
@@ -53,7 +53,6 @@ export function SimpleNavbar({
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-18">
-            
             {/* Simple Logo */}
             <motion.div
               className="cursor-pointer"
@@ -81,14 +80,18 @@ export function SimpleNavbar({
                   whileTap={{ scale: 0.95 }}
                 >
                   <span>{item.label}</span>
-                  
+
                   {/* Active indicator */}
                   {activeSection === item.id && (
                     <motion.div
                       className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500"
                       layoutId="activeIndicator"
                       initial={false}
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                      }}
                     />
                   )}
                 </motion.button>
@@ -97,7 +100,6 @@ export function SimpleNavbar({
 
             {/* Action Buttons */}
             <div className="flex items-center space-x-4">
-              
               {/* Contact Button */}
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -126,7 +128,7 @@ export function SimpleNavbar({
                   size="sm"
                   className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white border-0"
                   onClick={() => {
-                    console.log('Download CV');
+                    console.log("Download CV");
                   }}
                 >
                   <Download className="h-4 w-4 mr-2" />

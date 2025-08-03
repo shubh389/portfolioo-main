@@ -1,28 +1,57 @@
 import { useRef, Suspense, useState, useEffect } from "react";
-import { motion, AnimatePresence, useViewportScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useViewportScroll,
+  useTransform,
+} from "framer-motion";
 import { Code2, Sparkles, Zap, Heart, ArrowDown, Play } from "lucide-react";
-import Spline from '@splinetool/react-spline';
+import Spline from "@splinetool/react-spline";
 
 interface SimplifiedHeroProps {
   scrollToSection: (section: string) => void;
 }
 
-function AnimatedHeroContent({ scrollToSection }: { scrollToSection: (section: string) => void }) {
+function AnimatedHeroContent({
+  scrollToSection,
+}: {
+  scrollToSection: (section: string) => void;
+}) {
   const [currentTitle, setCurrentTitle] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
-  
+
   const titles = [
-    { text: "Full Stack Developer", icon: "Code2", gradient: "from-cyan-400 via-blue-500 to-purple-600", color: "#06b6d4" },
-    { text: "Blockchain Expert", icon: "Zap", gradient: "from-purple-400 via-pink-500 to-red-500", color: "#a855f7" },
-    { text: "AI Enthusiast", icon: "Sparkles", gradient: "from-green-400 via-cyan-500 to-blue-600", color: "#10b981" },
-    { text: "Creative Innovator", icon: "Heart", gradient: "from-pink-400 via-purple-500 to-indigo-600", color: "#ec4899" }
+    {
+      text: "Full Stack Developer",
+      icon: "Code2",
+      gradient: "from-cyan-400 via-blue-500 to-purple-600",
+      color: "#06b6d4",
+    },
+    {
+      text: "Blockchain Expert",
+      icon: "Zap",
+      gradient: "from-purple-400 via-pink-500 to-red-500",
+      color: "#a855f7",
+    },
+    {
+      text: "AI Enthusiast",
+      icon: "Sparkles",
+      gradient: "from-green-400 via-cyan-500 to-blue-600",
+      color: "#10b981",
+    },
+    {
+      text: "Creative Innovator",
+      icon: "Heart",
+      gradient: "from-pink-400 via-purple-500 to-indigo-600",
+      color: "#ec4899",
+    },
   ];
 
   const iconComponents = {
     Code2,
     Zap,
     Sparkles,
-    Heart
+    Heart,
   };
 
   useEffect(() => {
@@ -34,35 +63,35 @@ function AnimatedHeroContent({ scrollToSection }: { scrollToSection: (section: s
   }, []);
 
   const letterVariants = {
-    initial: { 
-      y: 100, 
-      opacity: 0, 
+    initial: {
+      y: 100,
+      opacity: 0,
       rotateX: -90,
-      scale: 0.8
+      scale: 0.8,
     },
-    animate: { 
-      y: 0, 
-      opacity: 1, 
+    animate: {
+      y: 0,
+      opacity: 1,
       rotateX: 0,
       scale: 1,
       transition: {
         type: "spring",
         stiffness: 100,
         damping: 12,
-        mass: 0.8
-      }
+        mass: 0.8,
+      },
     },
-    exit: { 
-      y: -100, 
-      opacity: 0, 
+    exit: {
+      y: -100,
+      opacity: 0,
       rotateX: 90,
       scale: 0.8,
       transition: {
         type: "spring",
         stiffness: 100,
-        damping: 15
-      }
-    }
+        damping: 15,
+      },
+    },
   };
 
   const containerVariants = {
@@ -70,18 +99,19 @@ function AnimatedHeroContent({ scrollToSection }: { scrollToSection: (section: s
     animate: {
       transition: {
         staggerChildren: 0.08,
-        delayChildren: 0.2
-      }
+        delayChildren: 0.2,
+      },
     },
     exit: {
       transition: {
         staggerChildren: 0.04,
-        staggerDirection: -1
-      }
-    }
+        staggerDirection: -1,
+      },
+    },
   };
 
-  const IconComponent = iconComponents[titles[currentTitle].icon as keyof typeof iconComponents];
+  const IconComponent =
+    iconComponents[titles[currentTitle].icon as keyof typeof iconComponents];
 
   return (
     <motion.div
@@ -95,23 +125,23 @@ function AnimatedHeroContent({ scrollToSection }: { scrollToSection: (section: s
         <motion.div
           initial={{ y: -80, opacity: 0, scale: 0.8 }}
           animate={{ y: 0, opacity: 1, scale: 1 }}
-          transition={{ 
-            duration: 1.2, 
+          transition={{
+            duration: 1.2,
             delay: 0.3,
             type: "spring",
-            stiffness: 100
+            stiffness: 100,
           }}
           className="mb-4 sm:mb-6 lg:mb-8"
         >
-          <motion.span 
+          <motion.span
             className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-400 font-light tracking-wider uppercase"
-            animate={{ 
+            animate={{
               opacity: [0.6, 1, 0.6],
             }}
             transition={{
               duration: 3,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
           >
             Hello, I'm
@@ -122,12 +152,12 @@ function AnimatedHeroContent({ scrollToSection }: { scrollToSection: (section: s
         <motion.div
           initial={{ scale: 0.5, opacity: 0, rotateY: -45 }}
           animate={{ scale: 1, opacity: 1, rotateY: 0 }}
-          transition={{ 
-            duration: 1.5, 
-            delay: 0.7, 
-            type: "spring", 
+          transition={{
+            duration: 1.5,
+            delay: 0.7,
+            type: "spring",
             stiffness: 80,
-            damping: 20
+            damping: 20,
           }}
           className="mb-6 sm:mb-8 lg:mb-12 relative"
         >
@@ -143,15 +173,15 @@ function AnimatedHeroContent({ scrollToSection }: { scrollToSection: (section: s
               transition={{
                 duration: 6,
                 repeat: Infinity,
-                ease: "linear"
+                ease: "linear",
               }}
               style={{
-                backgroundSize: "200% 200%"
+                backgroundSize: "200% 200%",
               }}
             >
               Shubham
             </motion.span>
-            
+
             {/* Enhanced floating particles */}
             {[...Array(8)].map((_, i) => (
               <motion.div
@@ -161,7 +191,7 @@ function AnimatedHeroContent({ scrollToSection }: { scrollToSection: (section: s
                   left: `${15 + i * 12}%`,
                   top: `${5 + (i % 3) * 30}%`,
                   background: titles[currentTitle].color,
-                  boxShadow: `0 0 20px ${titles[currentTitle].color}`
+                  boxShadow: `0 0 20px ${titles[currentTitle].color}`,
                 }}
                 animate={{
                   y: [-30, 30, -30],
@@ -173,7 +203,7 @@ function AnimatedHeroContent({ scrollToSection }: { scrollToSection: (section: s
                   duration: 4 + i * 0.5,
                   repeat: Infinity,
                   delay: i * 0.3,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               />
             ))}
@@ -195,23 +225,23 @@ function AnimatedHeroContent({ scrollToSection }: { scrollToSection: (section: s
                 initial={{ scale: 0, rotate: -180, opacity: 0 }}
                 animate={{ scale: 1, rotate: 0, opacity: 1 }}
                 exit={{ scale: 0, rotate: 180, opacity: 0 }}
-                transition={{ 
+                transition={{
                   duration: 0.8,
                   type: "spring",
-                  stiffness: 150
+                  stiffness: 150,
                 }}
                 className={`p-2 sm:p-3 lg:p-4 rounded-full bg-gradient-to-r ${titles[currentTitle].gradient} shadow-lg`}
                 style={{
-                  boxShadow: `0 10px 30px ${titles[currentTitle].color}40`
+                  boxShadow: `0 10px 30px ${titles[currentTitle].color}40`,
                 }}
               >
                 <IconComponent className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-8 lg:w-8 text-white" />
               </motion.div>
 
               <div className="flex flex-wrap justify-center sm:justify-start">
-                {titles[currentTitle].text.split(' ').map((word, wordIndex) => (
+                {titles[currentTitle].text.split(" ").map((word, wordIndex) => (
                   <div key={wordIndex} className="flex mr-2 sm:mr-3 lg:mr-4">
-                    {word.split('').map((letter, letterIndex) => (
+                    {word.split("").map((letter, letterIndex) => (
                       <motion.span
                         key={`${currentTitle}-${wordIndex}-${letterIndex}`}
                         variants={letterVariants}
@@ -222,7 +252,7 @@ function AnimatedHeroContent({ scrollToSection }: { scrollToSection: (section: s
                         whileHover={{
                           scale: 1.2,
                           rotateY: 10,
-                          transition: { duration: 0.2 }
+                          transition: { duration: 0.2 },
                         }}
                       >
                         {letter}
@@ -250,20 +280,20 @@ function AnimatedHeroContent({ scrollToSection }: { scrollToSection: (section: s
             Crafting digital experiences with{" "}
             <motion.span
               className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent font-semibold"
-              animate={{ 
+              animate={{
                 opacity: [0.7, 1, 0.7],
-                scale: [1, 1.05, 1]
+                scale: [1, 1.05, 1],
               }}
               transition={{ duration: 3, repeat: Infinity }}
             >
               passion
-            </motion.span>
-            {" "}and{" "}
+            </motion.span>{" "}
+            and{" "}
             <motion.span
               className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent font-semibold"
-              animate={{ 
+              animate={{
                 opacity: [0.7, 1, 0.7],
-                scale: [1, 1.05, 1]
+                scale: [1, 1.05, 1],
               }}
               transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
             >
@@ -280,12 +310,12 @@ function AnimatedHeroContent({ scrollToSection }: { scrollToSection: (section: s
           className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center pointer-events-auto mb-12 sm:mb-16 lg:mb-20"
         >
           <motion.button
-            onClick={() => scrollToSection('projects')}
+            onClick={() => scrollToSection("projects")}
             className="group relative px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 bg-gradient-to-r from-cyan-500 to-purple-600 text-white rounded-full font-medium overflow-hidden text-sm sm:text-base lg:text-lg w-full sm:w-auto max-w-xs"
-            whileHover={{ 
-              scale: 1.05, 
+            whileHover={{
+              scale: 1.05,
               boxShadow: "0 20px 40px rgba(6, 182, 212, 0.4)",
-              rotateY: 5
+              rotateY: 5,
             }}
             whileTap={{ scale: 0.95 }}
             style={{ transformStyle: "preserve-3d" }}
@@ -303,12 +333,12 @@ function AnimatedHeroContent({ scrollToSection }: { scrollToSection: (section: s
           </motion.button>
 
           <motion.button
-            onClick={() => scrollToSection('contact')}
+            onClick={() => scrollToSection("contact")}
             className="group relative px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 border-2 border-cyan-400/50 text-cyan-400 rounded-full font-medium overflow-hidden text-sm sm:text-base lg:text-lg w-full sm:w-auto max-w-xs"
-            whileHover={{ 
+            whileHover={{
               scale: 1.05,
               borderColor: "#06b6d4",
-              boxShadow: "0 0 30px rgba(6, 182, 212, 0.3)"
+              boxShadow: "0 0 30px rgba(6, 182, 212, 0.3)",
             }}
             whileTap={{ scale: 0.95 }}
           >
@@ -337,7 +367,7 @@ function AnimatedHeroContent({ scrollToSection }: { scrollToSection: (section: s
             animate={{ y: [0, 15, 0] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
             className="flex flex-col items-center gap-2 sm:gap-3 text-gray-400 cursor-pointer group"
-            onClick={() => scrollToSection('about')}
+            onClick={() => scrollToSection("about")}
             whileHover={{ scale: 1.1 }}
           >
             <span className="text-xs sm:text-sm font-light group-hover:text-cyan-400 transition-colors">
@@ -345,21 +375,21 @@ function AnimatedHeroContent({ scrollToSection }: { scrollToSection: (section: s
             </span>
             <motion.div
               className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-gray-400 rounded-full flex justify-center group-hover:border-cyan-400 transition-colors"
-              whileHover={{ 
-                boxShadow: "0 0 20px rgba(6, 182, 212, 0.3)" 
+              whileHover={{
+                boxShadow: "0 0 20px rgba(6, 182, 212, 0.3)",
               }}
             >
               <motion.div
                 className="w-0.5 h-2 sm:w-1 sm:h-3 bg-gray-400 rounded-full mt-1.5 sm:mt-2 group-hover:bg-cyan-400 transition-colors"
-                animate={{ 
-                  y: [0, 12, 0], 
+                animate={{
+                  y: [0, 12, 0],
                   opacity: [1, 0, 1],
-                  scale: [1, 0.8, 1]
+                  scale: [1, 0.8, 1],
                 }}
-                transition={{ 
-                  duration: 2.5, 
+                transition={{
+                  duration: 2.5,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               />
             </motion.div>
@@ -382,11 +412,13 @@ export function SimplifiedHero({ scrollToSection }: SimplifiedHeroProps) {
     >
       {/* Spline 3D Scene */}
       <div className="absolute inset-0 z-10 pointer-events-auto">
-        <Suspense fallback={
-          <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center">
-            <div className="animate-spin rounded-full h-16 w-16 sm:h-24 sm:w-24 lg:h-32 lg:w-32 border-b-2 border-white"></div>
-          </div>
-        }>
+        <Suspense
+          fallback={
+            <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center">
+              <div className="animate-spin rounded-full h-16 w-16 sm:h-24 sm:w-24 lg:h-32 lg:w-32 border-b-2 border-white"></div>
+            </div>
+          }
+        >
           <div className="w-full h-full relative spline-container">
             <Spline
               scene="https://prod.spline.design/diTNwA7MDXjmBX6n/scene.splinecode"
@@ -394,7 +426,7 @@ export function SimplifiedHero({ scrollToSection }: SimplifiedHeroProps) {
                 width: "100%",
                 height: "100%",
                 pointerEvents: "auto",
-                cursor: "auto"
+                cursor: "auto",
               }}
               onLoad={() => {
                 console.log("Spline scene loaded successfully");
@@ -403,33 +435,43 @@ export function SimplifiedHero({ scrollToSection }: SimplifiedHeroProps) {
                   // Remove known watermark selectors
                   const watermarkSelectors = [
                     '[data-spline="watermark"]',
-                    '.spline-watermark',
+                    ".spline-watermark",
                     '[class*="watermark"]',
-                    '[id*="watermark"]'
+                    '[id*="watermark"]',
                   ];
 
-                  watermarkSelectors.forEach(selector => {
+                  watermarkSelectors.forEach((selector) => {
                     const elements = document.querySelectorAll(selector);
                     elements.forEach((el) => {
-                      (el as HTMLElement).style.display = 'none';
-                      (el as HTMLElement).style.visibility = 'hidden';
-                      (el as HTMLElement).style.opacity = '0';
+                      (el as HTMLElement).style.display = "none";
+                      (el as HTMLElement).style.visibility = "hidden";
+                      (el as HTMLElement).style.opacity = "0";
                     });
                   });
 
                   // Remove any bottom-right positioned elements with text content
-                  const allElements = document.querySelectorAll('*');
+                  const allElements = document.querySelectorAll("*");
                   allElements.forEach((el) => {
                     const style = window.getComputedStyle(el);
-                    const text = el.textContent?.toLowerCase() || '';
+                    const text = el.textContent?.toLowerCase() || "";
 
-                    if ((style.position === 'absolute' || style.position === 'fixed') &&
-                        (style.bottom === '16px' || style.bottom === '8px' || style.bottom === '12px') &&
-                        (style.right === '16px' || style.right === '8px' || style.right === '12px') &&
-                        (text.includes('spline') || text.includes('built') || text.includes('made'))) {
-                      (el as HTMLElement).style.display = 'none !important';
-                      (el as HTMLElement).style.visibility = 'hidden !important';
-                      (el as HTMLElement).style.opacity = '0 !important';
+                    if (
+                      (style.position === "absolute" ||
+                        style.position === "fixed") &&
+                      (style.bottom === "16px" ||
+                        style.bottom === "8px" ||
+                        style.bottom === "12px") &&
+                      (style.right === "16px" ||
+                        style.right === "8px" ||
+                        style.right === "12px") &&
+                      (text.includes("spline") ||
+                        text.includes("built") ||
+                        text.includes("made"))
+                    ) {
+                      (el as HTMLElement).style.display = "none !important";
+                      (el as HTMLElement).style.visibility =
+                        "hidden !important";
+                      (el as HTMLElement).style.opacity = "0 !important";
                     }
                   });
                 };
@@ -447,10 +489,10 @@ export function SimplifiedHero({ scrollToSection }: SimplifiedHeroProps) {
           </div>
         </Suspense>
       </div>
-      
+
       {/* Enhanced gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black opacity-40 pointer-events-none" />
-      
+
       {/* Stunning Animated Hero Content */}
       <AnimatedHeroContent scrollToSection={scrollToSection} />
     </section>

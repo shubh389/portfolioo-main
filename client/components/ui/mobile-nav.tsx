@@ -1,6 +1,17 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Home, User, Code, Briefcase, Mail, Download, Github, Globe } from "lucide-react";
+import {
+  Menu,
+  X,
+  Home,
+  User,
+  Code,
+  Briefcase,
+  Mail,
+  Download,
+  Github,
+  Globe,
+} from "lucide-react";
 import { Button } from "./button";
 
 interface MobileNavProps {
@@ -14,19 +25,19 @@ export function MobileNav({ activeSection, scrollToSection }: MobileNavProps) {
   // Close menu on escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsOpen(false);
+      if (e.key === "Escape") setIsOpen(false);
     };
 
     if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'hidden';
+      document.addEventListener("keydown", handleEscape);
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'unset';
+      document.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = "unset";
     };
   }, [isOpen]);
 
@@ -46,10 +57,7 @@ export function MobileNav({ activeSection, scrollToSection }: MobileNavProps) {
   return (
     <div className="lg:hidden">
       {/* Enhanced Hamburger Button */}
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
+      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
         <Button
           variant="ghost"
           size="icon"
@@ -88,7 +96,9 @@ export function MobileNav({ activeSection, scrollToSection }: MobileNavProps) {
           <motion.div
             className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-md"
             initial={{ scale: 0, opacity: 0 }}
-            animate={isOpen ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+            animate={
+              isOpen ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }
+            }
             transition={{ duration: 0.2 }}
           />
         </Button>
@@ -117,7 +127,7 @@ export function MobileNav({ activeSection, scrollToSection }: MobileNavProps) {
                 type: "spring",
                 damping: 30,
                 stiffness: 300,
-                opacity: { duration: 0.2 }
+                opacity: { duration: 0.2 },
               }}
               className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-black/95 backdrop-blur-xl border-l border-white/20 z-40 flex flex-col shadow-2xl shadow-cyan-500/10"
             >
@@ -139,7 +149,9 @@ export function MobileNav({ activeSection, scrollToSection }: MobileNavProps) {
                     title="Available for work"
                   />
                 </div>
-                <p className="text-sm text-gray-400 mt-1">Choose your destination</p>
+                <p className="text-sm text-gray-400 mt-1">
+                  Choose your destination
+                </p>
               </motion.div>
 
               {/* Enhanced Navigation Items */}
@@ -154,7 +166,7 @@ export function MobileNav({ activeSection, scrollToSection }: MobileNavProps) {
                         delay: index * 0.08,
                         type: "spring",
                         damping: 20,
-                        stiffness: 300
+                        stiffness: 300,
                       }}
                       whileHover={{ scale: 1.02, x: 4 }}
                       whileTap={{ scale: 0.98 }}
@@ -166,9 +178,7 @@ export function MobileNav({ activeSection, scrollToSection }: MobileNavProps) {
                       }`}
                     >
                       {/* Background glow effect */}
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      />
+                      <motion.div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                       <motion.div
                         className={`p-2.5 rounded-lg relative z-10 ${
@@ -176,7 +186,9 @@ export function MobileNav({ activeSection, scrollToSection }: MobileNavProps) {
                             ? "bg-gradient-to-r from-cyan-500 to-purple-600 shadow-lg"
                             : "bg-white/10 group-hover:bg-white/20"
                         }`}
-                        whileHover={{ rotate: activeSection === item.id ? 0 : 5 }}
+                        whileHover={{
+                          rotate: activeSection === item.id ? 0 : 5,
+                        }}
                       >
                         <item.icon className="h-5 w-5" />
                       </motion.div>
@@ -220,14 +232,16 @@ export function MobileNav({ activeSection, scrollToSection }: MobileNavProps) {
                   transition={{ delay: 0.5 }}
                   className="mt-8 pt-6 border-t border-white/10"
                 >
-                  <h3 className="text-sm font-medium text-gray-400 mb-4">Quick Actions</h3>
+                  <h3 className="text-sm font-medium text-gray-400 mb-4">
+                    Quick Actions
+                  </h3>
                   <div className="grid grid-cols-2 gap-3">
                     <Button
                       variant="outline"
                       size="sm"
                       className="border-white/20 text-white/80 hover:bg-white/10 hover:border-white/30"
                       onClick={() => {
-                        console.log('Download CV');
+                        console.log("Download CV");
                         setIsOpen(false);
                       }}
                     >
@@ -267,9 +281,7 @@ export function MobileNav({ activeSection, scrollToSection }: MobileNavProps) {
                       className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 shadow-lg shadow-cyan-500/20 relative overflow-hidden group"
                       onClick={() => handleNavClick("contact")}
                     >
-                      <motion.div
-                        className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"
-                      />
+                      <motion.div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300" />
                       <Mail className="h-4 w-4 mr-2 relative z-10" />
                       <span className="relative z-10">Let's Connect</span>
                     </Button>
