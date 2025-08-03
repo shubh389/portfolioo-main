@@ -398,25 +398,47 @@ export function SimplifiedHero({ scrollToSection }: SimplifiedHeroProps) {
               }}
               onLoad={() => {
                 console.log("Spline scene loaded successfully");
-                // Hide Spline watermark after load
-                setTimeout(() => {
-                  const watermarks = document.querySelectorAll('[data-spline="watermark"], .spline-watermark');
-                  watermarks.forEach((el) => {
-                    (el as HTMLElement).style.display = 'none';
+                // Enhanced watermark removal
+                const removeWatermarks = () => {
+                  // Remove known watermark selectors
+                  const watermarkSelectors = [
+                    '[data-spline="watermark"]',
+                    '.spline-watermark',
+                    '[class*="watermark"]',
+                    '[id*="watermark"]'
+                  ];
+
+                  watermarkSelectors.forEach(selector => {
+                    const elements = document.querySelectorAll(selector);
+                    elements.forEach((el) => {
+                      (el as HTMLElement).style.display = 'none';
+                      (el as HTMLElement).style.visibility = 'hidden';
+                      (el as HTMLElement).style.opacity = '0';
+                    });
                   });
-                  
-                  // Hide any element that looks like a watermark (bottom-right positioned)
-                  const allDivs = document.querySelectorAll('div');
-                  allDivs.forEach((div) => {
-                    const style = window.getComputedStyle(div);
-                    if (style.position === 'absolute' && 
-                        style.bottom === '16px' && 
-                        style.right === '16px' &&
-                        div.textContent?.toLowerCase().includes('spline')) {
-                      (div as HTMLElement).style.display = 'none';
+
+                  // Remove any bottom-right positioned elements with text content
+                  const allElements = document.querySelectorAll('*');
+                  allElements.forEach((el) => {
+                    const style = window.getComputedStyle(el);
+                    const text = el.textContent?.toLowerCase() || '';
+
+                    if ((style.position === 'absolute' || style.position === 'fixed') &&
+                        (style.bottom === '16px' || style.bottom === '8px' || style.bottom === '12px') &&
+                        (style.right === '16px' || style.right === '8px' || style.right === '12px') &&
+                        (text.includes('spline') || text.includes('built') || text.includes('made'))) {
+                      (el as HTMLElement).style.display = 'none !important';
+                      (el as HTMLElement).style.visibility = 'hidden !important';
+                      (el as HTMLElement).style.opacity = '0 !important';
                     }
                   });
-                }, 1000);
+                };
+
+                // Run multiple times to catch dynamically added elements
+                setTimeout(removeWatermarks, 100);
+                setTimeout(removeWatermarks, 500);
+                setTimeout(removeWatermarks, 1000);
+                setTimeout(removeWatermarks, 2000);
               }}
               onError={(error) => {
                 console.error("Spline scene error:", error);
