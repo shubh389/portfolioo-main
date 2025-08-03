@@ -289,25 +289,49 @@ export default function Index() {
                   />
                 ))}
 
-                {/* Main Photo Container */}
+                {/* Main Photo Container with Enhanced Curves */}
                 <motion.div
-                  className="relative w-80 h-80 sm:w-96 sm:h-96 mx-auto rounded-3xl bg-gradient-to-r from-cyan-500 via-purple-600 to-pink-500 p-1 shadow-2xl"
+                  className="relative w-80 h-80 sm:w-96 sm:h-96 mx-auto shadow-2xl"
                   whileHover={{ scale: 1.02, rotate: 1 }}
                   transition={{ duration: 0.3 }}
+                  style={{
+                    borderRadius: "50px 80px 50px 80px",
+                    background: "linear-gradient(135deg, #06b6d4 0%, #a855f7 50%, #ec4899 100%)",
+                    padding: "3px",
+                  }}
                 >
-                  <div className="w-full h-full rounded-3xl bg-black p-2 relative overflow-hidden">
+                  <div
+                    className="w-full h-full bg-black p-2 relative overflow-hidden"
+                    style={{
+                      borderRadius: "47px 77px 47px 77px",
+                    }}
+                  >
                     {/* Profile Photo */}
                     <motion.img
                       src="https://cdn.builder.io/api/v1/image/assets%2Fc8e502a783604533b5c478ab95726ead%2F199507c874244f0f9e886ac688d4e928?format=webp&width=800"
                       alt="Shubham Dev - Full Stack Developer"
-                      className="w-full h-full rounded-3xl object-cover object-center shadow-xl"
+                      className="w-full h-full object-cover object-center shadow-xl"
+                      style={{
+                        borderRadius: "45px 75px 45px 75px",
+                      }}
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.3 }}
                       loading="lazy"
                     />
 
                     {/* Overlay Gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent rounded-3xl opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                    <div
+                      className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"
+                      style={{
+                        borderRadius: "45px 75px 45px 75px",
+                      }}
+                    />
+
+                    {/* Decorative Corner Elements */}
+                    <div className="absolute top-4 left-4 w-6 h-6 bg-gradient-to-br from-cyan-400/30 to-transparent rounded-full blur-sm" />
+                    <div className="absolute top-4 right-4 w-4 h-4 bg-gradient-to-br from-purple-400/30 to-transparent rounded-full blur-sm" />
+                    <div className="absolute bottom-4 left-4 w-5 h-5 bg-gradient-to-br from-pink-400/30 to-transparent rounded-full blur-sm" />
+                    <div className="absolute bottom-4 right-4 w-3 h-3 bg-gradient-to-br from-cyan-400/30 to-transparent rounded-full blur-sm" />
 
                     {/* Tech Icons Orbiting */}
                     <motion.div
