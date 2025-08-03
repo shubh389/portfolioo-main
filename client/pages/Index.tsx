@@ -38,7 +38,6 @@ export default function Index() {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const supportsCursor = useSupportsCursor();
-  const { theme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
