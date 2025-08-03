@@ -217,13 +217,13 @@ export default function Index() {
             </motion.div>
 
             {/* Enhanced Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-1">
+            <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
               {["Home", "About", "Skills", "Projects", "Contact"].map(
                 (item) => (
                   <motion.button
                     key={item}
                     onClick={() => scrollToSection(item.toLowerCase())}
-                    className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group ${
+                    className={`relative px-3 py-2 text-xs lg:text-sm font-medium transition-all duration-300 rounded-lg group ${
                       activeSection === item.toLowerCase()
                         ? "text-cyan-400"
                         : "text-white/70 hover:text-white"
@@ -243,7 +243,7 @@ export default function Index() {
                     {/* Active indicator */}
                     {activeSection === item.toLowerCase() && (
                       <motion.div
-                        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full"
+                        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 lg:w-8 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full"
                         layoutId="activeIndicator"
                         initial={false}
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
@@ -252,7 +252,7 @@ export default function Index() {
 
                     {/* Hover indicator */}
                     <motion.div
-                      className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400/50 to-purple-500/50 rounded-full group-hover:w-6 transition-all duration-300"
+                      className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400/50 to-purple-500/50 rounded-full group-hover:w-4 lg:group-hover:w-6 transition-all duration-300"
                     />
                   </motion.button>
                 ),
