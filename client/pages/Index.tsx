@@ -300,7 +300,7 @@ export default function Index() {
               >
                 <Button
                   size="sm"
-                  className="relative overflow-hidden bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white border-0 group"
+                  className="relative overflow-hidden bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white border-0 group text-xs lg:text-sm px-3 lg:px-4"
                   onClick={() => {
                     // Add CV download logic here
                     console.log('Download CV');
@@ -309,8 +309,9 @@ export default function Index() {
                   <motion.div
                     className="absolute inset-0 bg-white/20 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300"
                   />
-                  <Download className="h-4 w-4 mr-2 relative z-10" />
-                  <span className="relative z-10">Resume</span>
+                  <Download className="h-3 w-3 lg:h-4 lg:w-4 mr-1 lg:mr-2 relative z-10" />
+                  <span className="relative z-10 hidden lg:inline">Resume</span>
+                  <span className="relative z-10 lg:hidden">CV</span>
                 </Button>
               </motion.div>
 
