@@ -9,8 +9,7 @@ import { ParticleBackground } from "@/components/ui/particle-background";
 import { MobileNav } from "@/components/ui/mobile-nav";
 import { SimplifiedHero } from "@/components/ui/simplified-hero";
 import { CustomCursor, useSupportsCursor } from "@/components/ui/custom-cursor";
-import { EnhancedNavbar } from "@/components/ui/enhanced-navbar";
-import { useTheme } from "@/contexts/ThemeContext";
+import { SimpleNavbar } from "@/components/ui/simple-navbar";
 import {
   Github,
   ExternalLink,
