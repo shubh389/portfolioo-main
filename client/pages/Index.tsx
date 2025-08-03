@@ -506,9 +506,73 @@ export default function Index() {
                 Skills
               </span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
               Technologies I use to bring ideas to life
             </p>
+
+            {/* Optimized Horizontal Scrolling Tools */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="mb-12"
+            >
+              <div className="relative overflow-hidden rounded-xl bg-white/5 border border-white/10 p-3 sm:p-4 mx-auto max-w-6xl">
+                <motion.div
+                  className="flex items-center gap-4 sm:gap-6"
+                  animate={{
+                    x: [0, -1000],
+                  }}
+                  transition={{
+                    duration: 15,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                  style={{
+                    willChange: 'transform'
+                  }}
+                >
+                  {[
+                    { name: "React", icon: "⚛️", color: "text-blue-400" },
+                    { name: "TypeScript", icon: "📘", color: "text-blue-600" },
+                    { name: "Node.js", icon: "🟢", color: "text-green-400" },
+                    { name: "Python", icon: "🐍", color: "text-yellow-400" },
+                    { name: "Next.js", icon: "▲", color: "text-white" },
+                    { name: "PostgreSQL", icon: "🐘", color: "text-blue-500" },
+                    { name: "MongoDB", icon: "🍃", color: "text-green-500" },
+                    { name: "Docker", icon: "🐳", color: "text-blue-400" },
+                    { name: "AWS", icon: "☁️", color: "text-orange-400" },
+                    { name: "Tailwind", icon: "🎨", color: "text-cyan-400" },
+                    { name: "Three.js", icon: "🎲", color: "text-yellow-300" },
+                    { name: "Solidity", icon: "💰", color: "text-gray-300" },
+                    { name: "Web3", icon: "🌐", color: "text-blue-300" },
+                    { name: "AI/ML", icon: "🤖", color: "text-green-300" },
+                  ].concat([
+                    // Duplicate for seamless loop
+                    { name: "React", icon: "⚛️", color: "text-blue-400" },
+                    { name: "TypeScript", icon: "📘", color: "text-blue-600" },
+                    { name: "Node.js", icon: "🟢", color: "text-green-400" },
+                    { name: "Python", icon: "🐍", color: "text-yellow-400" },
+                    { name: "Next.js", icon: "▲", color: "text-white" },
+                    { name: "PostgreSQL", icon: "🐘", color: "text-blue-500" },
+                    { name: "MongoDB", icon: "🍃", color: "text-green-500" },
+                    { name: "Docker", icon: "🐳", color: "text-blue-400" },
+                    { name: "AWS", icon: "☁️", color: "text-orange-400" },
+                    { name: "Tailwind", icon: "🎨", color: "text-cyan-400" },
+                  ]).map((tool, index) => (
+                    <div
+                      key={`${tool.name}-${index}`}
+                      className="flex-shrink-0 flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 bg-white/5 rounded-full border border-white/10"
+                    >
+                      <span className="text-lg sm:text-xl">{tool.icon}</span>
+                      <span className={`text-xs sm:text-sm font-medium ${tool.color} whitespace-nowrap`}>
+                        {tool.name}
+                      </span>
+                    </div>
+                  ))}
+                </motion.div>
+              </div>
+            </motion.div>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
