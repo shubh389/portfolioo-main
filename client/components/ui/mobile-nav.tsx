@@ -11,6 +11,7 @@ interface MobileNavProps {
 
 export function MobileNav({ activeSection, scrollToSection }: MobileNavProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   // Close menu on escape key
   useEffect(() => {
