@@ -257,7 +257,7 @@ export default function Index() {
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-16 items-start">
-            {/* Enhanced Avatar with Particles */}
+            {/* Enhanced Profile Photo with Effects */}
             <motion.div
               initial={{ opacity: 0, x: -100, rotateY: -30 }}
               whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
@@ -265,7 +265,7 @@ export default function Index() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="relative w-96 h-96 mx-auto">
+              <div className="relative w-full max-w-md mx-auto">
                 {/* Floating Particles */}
                 {[...Array(12)].map((_, i) => (
                   <motion.div
@@ -289,47 +289,47 @@ export default function Index() {
                   />
                 ))}
 
-                {/* Main Avatar */}
+                {/* Main Photo Container */}
                 <motion.div
-                  className="w-80 h-80 mx-auto rounded-full bg-gradient-to-r from-cyan-500 via-purple-600 to-pink-500 p-1 relative"
-                  whileHover={{ scale: 1.05, rotate: 5 }}
+                  className="relative w-80 h-80 sm:w-96 sm:h-96 mx-auto rounded-3xl bg-gradient-to-r from-cyan-500 via-purple-600 to-pink-500 p-1 shadow-2xl"
+                  whileHover={{ scale: 1.02, rotate: 1 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="w-full h-full rounded-full bg-black flex items-center justify-center relative overflow-hidden">
-                    <div className="w-72 h-72 rounded-full bg-gradient-to-br from-gray-800 via-gray-900 to-black flex items-center justify-center relative">
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{
-                          duration: 20,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                      >
-                        <Code2 className="h-28 w-28 text-cyan-400" />
-                      </motion.div>
+                  <div className="w-full h-full rounded-3xl bg-black p-2 relative overflow-hidden">
+                    {/* Profile Photo */}
+                    <motion.img
+                      src="https://cdn.builder.io/api/v1/image/assets%2Fc8e502a783604533b5c478ab95726ead%2F199507c874244f0f9e886ac688d4e928?format=webp&width=800"
+                      alt="Shubham Dev - Full Stack Developer"
+                      className="w-full h-full rounded-3xl object-cover object-center shadow-xl"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.3 }}
+                      loading="lazy"
+                    />
 
-                      {/* Tech Icons Orbiting */}
-                      <motion.div
-                        className="absolute inset-0"
-                        animate={{ rotate: -360 }}
-                        transition={{
-                          duration: 30,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                      >
-                        <Database className="absolute top-4 left-1/2 transform -translate-x-1/2 h-6 w-6 text-purple-400" />
-                        <Globe className="absolute right-4 top-1/2 transform -translate-y-1/2 h-6 w-6 text-cyan-400" />
-                        <Bot className="absolute bottom-4 left-1/2 transform -translate-x-1/2 h-6 w-6 text-pink-400" />
-                        <Brain className="absolute left-4 top-1/2 transform -translate-y-1/2 h-6 w-6 text-green-400" />
-                      </motion.div>
-                    </div>
+                    {/* Overlay Gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent rounded-3xl opacity-0 hover:opacity-100 transition-opacity duration-300" />
+
+                    {/* Tech Icons Orbiting */}
+                    <motion.div
+                      className="absolute inset-0 pointer-events-none"
+                      animate={{ rotate: 360 }}
+                      transition={{
+                        duration: 30,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                    >
+                      <Database className="absolute top-4 left-1/2 transform -translate-x-1/2 h-6 w-6 text-purple-400 opacity-80" />
+                      <Globe className="absolute right-4 top-1/2 transform -translate-y-1/2 h-6 w-6 text-cyan-400 opacity-80" />
+                      <Bot className="absolute bottom-4 left-1/2 transform -translate-x-1/2 h-6 w-6 text-pink-400 opacity-80" />
+                      <Brain className="absolute left-4 top-1/2 transform -translate-y-1/2 h-6 w-6 text-green-400 opacity-80" />
+                    </motion.div>
                   </div>
                 </motion.div>
 
                 {/* Status Indicator */}
                 <motion.div
-                  className="absolute -top-2 -right-2 bg-green-400 rounded-full p-3 border-4 border-black"
+                  className="absolute -top-2 -right-2 bg-green-400 rounded-full p-3 border-4 border-black shadow-lg"
                   animate={{
                     scale: [1, 1.2, 1],
                     boxShadow: [
@@ -342,6 +342,22 @@ export default function Index() {
                 >
                   <Sparkles className="h-6 w-6 text-black" />
                 </motion.div>
+
+                {/* Responsive adjustments for mobile */}
+                <style jsx>{`
+                  @media (max-width: 640px) {
+                    .relative > .motion-div {
+                      width: 300px;
+                      height: 300px;
+                    }
+                  }
+                  @media (max-width: 480px) {
+                    .relative > .motion-div {
+                      width: 250px;
+                      height: 250px;
+                    }
+                  }
+                `}</style>
               </div>
             </motion.div>
 
