@@ -322,21 +322,53 @@
     transform: translateY(0);
   }
 
-  /* Hide Spline watermark */
+  /* Comprehensive Spline watermark removal */
   [data-spline="watermark"],
   .spline-watermark,
-  div[style*="position: absolute"][style*="bottom: 16px"][style*="right: 16px"] {
+  [class*="watermark"],
+  [id*="watermark"],
+  div[style*="position: absolute"][style*="bottom: 16px"][style*="right: 16px"],
+  div[style*="position: absolute"][style*="bottom: 8px"][style*="right: 8px"],
+  div[style*="position: absolute"][style*="bottom: 12px"][style*="right: 12px"],
+  div[style*="position: fixed"][style*="bottom: 16px"][style*="right: 16px"],
+  div[style*="position: fixed"][style*="bottom: 8px"][style*="right: 8px"],
+  div[style*="position: fixed"][style*="bottom: 12px"][style*="right: 12px"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* Hide any element containing spline attribution text */
+  *[style*="bottom"][style*="right"]:has-text("spline"),
+  *[style*="bottom"][style*="right"]:has-text("Spline"),
+  *[style*="bottom"][style*="right"]:has-text("built"),
+  *[style*="bottom"][style*="right"]:has-text("Made"),
+  *[style*="bottom"][style*="right"]:has-text("Powered") {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
   }
 
-  /* Additional Spline watermark hiding for common patterns */
+  /* Additional Spline container cleanup */
   .spline-container div:last-child {
     position: relative;
   }
-  
+
   .spline-container div:last-child > div[style*="bottom"][style*="right"] {
+    display: none !important;
+  }
+
+  /* Hide any bottom-right positioned small elements that might be watermarks */
+  div[style*="position: absolute"][style*="bottom"][style*="right"] {
+    font-size: 0 !important;
+    line-height: 0 !important;
+  }
+
+  div[style*="position: absolute"][style*="bottom"][style*="right"]:empty {
     display: none !important;
   }
 }
