@@ -59,7 +59,9 @@ export function MobileNav({ activeSection, scrollToSection }: MobileNavProps) {
           className={`relative z-50 transition-all duration-300 ${
             isOpen
               ? "bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 text-cyan-400"
-              : "hover:bg-white/10 text-white/80 hover:text-white"
+              : theme === 'dark'
+                ? "hover:bg-white/10 text-white/80 hover:text-white"
+                : "hover:bg-black/10 text-black/80 hover:text-black"
           }`}
         >
           <AnimatePresence mode="wait">
