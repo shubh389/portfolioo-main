@@ -220,18 +220,12 @@ export function MobileNav({ activeSection, scrollToSection }: MobileNavProps) {
                   transition={{ delay: 0.5 }}
                   className="mt-8 pt-6 border-t border-white/10"
                 >
-                  <h3 className={`text-sm font-medium mb-4 ${
-                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                  }`}>Quick Actions</h3>
+                  <h3 className="text-sm font-medium text-gray-400 mb-4">Quick Actions</h3>
                   <div className="grid grid-cols-2 gap-3">
                     <Button
                       variant="outline"
                       size="sm"
-                      className={`${
-                        theme === 'dark'
-                          ? 'border-white/20 text-white/80 hover:bg-white/10 hover:border-white/30'
-                          : 'border-black/20 text-black/80 hover:bg-black/10 hover:border-black/30'
-                      }`}
+                      className="border-white/20 text-white/80 hover:bg-white/10 hover:border-white/30"
                       onClick={() => {
                         console.log('Download CV');
                         setIsOpen(false);
@@ -243,22 +237,11 @@ export function MobileNav({ activeSection, scrollToSection }: MobileNavProps) {
                     <Button
                       variant="outline"
                       size="sm"
-                      className={`${
-                        theme === 'dark'
-                          ? 'border-white/20 text-white/80 hover:bg-white/10 hover:border-white/30'
-                          : 'border-black/20 text-black/80 hover:bg-black/10 hover:border-black/30'
-                      }`}
-                      onClick={() => {
-                        toggleTheme();
-                        setIsOpen(false);
-                      }}
+                      className="border-white/20 text-white/80 hover:bg-white/10 hover:border-white/30"
+                      onClick={() => setIsOpen(false)}
                     >
-                      {theme === 'dark' ? (
-                        <Sun className="h-4 w-4 mr-1" />
-                      ) : (
-                        <Moon className="h-4 w-4 mr-1" />
-                      )}
-                      {theme === 'dark' ? 'Light' : 'Dark'}
+                      <Github className="h-4 w-4 mr-1" />
+                      GitHub
                     </Button>
                   </div>
                 </motion.div>
