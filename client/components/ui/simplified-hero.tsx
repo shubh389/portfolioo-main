@@ -1,4 +1,5 @@
 import { useRef, Suspense } from "react";
+import { motion } from "framer-motion";
 import Spline from '@splinetool/react-spline';
 
 interface SimplifiedHeroProps {
