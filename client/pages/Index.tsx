@@ -150,19 +150,62 @@ export default function Index() {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
     const formData = new FormData(e.currentTarget);
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
+    const subject = formData.get("subject") as string;
     const message = formData.get("message") as string;
 
-    // Create mailto link
-    const subject = `Project Inquiry from ${name}`;
-    const body = `Hi Shubham,\n\nI'm interested in discussing a project with you.\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n\nBest regards,\n${name}`;
-    const mailtoLink = `mailto:shubhamdev9128@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          subject: subject || `Project Inquiry from ${name}`,
+          message,
+        }),
+      });
 
-    window.location.href = mailtoLink;
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitStatus('success');
+        // Open mailto link as backup/primary method
+        if (result.mailtoUrl) {
+          window.location.href = result.mailtoUrl;
+        }
+        // Reset form
+        (e.target as HTMLFormElement).reset();
+      } else {
+        setSubmitStatus('error');
+        console.error('Email sending failed:', result.message);
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      console.error('Error sending email:', error);
+
+      // Fallback to mailto
+      const mailtoSubject = subject || `Project Inquiry from ${name}`;
+      const mailtoBody = `Hi Shubham,\n\nI'm interested in discussing a project with you.\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n\nBest regards,\n${name}`;
+      const mailtoLink = `mailto:shubhamdev9128@gmail.com?subject=${encodeURIComponent(mailtoSubject)}&body=${encodeURIComponent(mailtoBody)}`;
+      window.location.href = mailtoLink;
+    } finally {
+      setIsSubmitting(false);
+      // Reset status after 3 seconds
+      setTimeout(() => setSubmitStatus('idle'), 3000);
+    }
   };
 
   const copyToClipboard = async (text: string) => {
