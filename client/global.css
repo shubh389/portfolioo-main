@@ -96,10 +96,27 @@
   body {
     @apply bg-background text-foreground;
     scroll-behavior: smooth;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
 
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Light mode styles */
+  .light {
+    /* Custom scrollbar for light mode */
+    scrollbar-color: #06b6d4 #f1f5f9;
+  }
+
+  .light ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #06b6d4, #a855f7);
+  }
+
+  .light ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #0891b2, #9333ea);
   }
 
   /* Custom scrollbar */
@@ -169,6 +186,24 @@
       0 12px 40px rgba(0, 0, 0, 0.4),
       inset 0 1px 1px rgba(255, 255, 255, 0.15),
       0 0 30px rgba(6, 182, 212, 0.1);
+  }
+
+  /* Tech grid pattern */
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: grid-move 20s linear infinite;
+  }
+
+  @keyframes grid-move {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 50px 50px;
+    }
   }
 
   /* Gradient text effect */
@@ -307,21 +342,53 @@
     transform: translateY(0);
   }
 
-  /* Hide Spline watermark */
+  /* Comprehensive Spline watermark removal */
   [data-spline="watermark"],
   .spline-watermark,
-  div[style*="position: absolute"][style*="bottom: 16px"][style*="right: 16px"] {
+  [class*="watermark"],
+  [id*="watermark"],
+  div[style*="position: absolute"][style*="bottom: 16px"][style*="right: 16px"],
+  div[style*="position: absolute"][style*="bottom: 8px"][style*="right: 8px"],
+  div[style*="position: absolute"][style*="bottom: 12px"][style*="right: 12px"],
+  div[style*="position: fixed"][style*="bottom: 16px"][style*="right: 16px"],
+  div[style*="position: fixed"][style*="bottom: 8px"][style*="right: 8px"],
+  div[style*="position: fixed"][style*="bottom: 12px"][style*="right: 12px"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* Hide any element containing spline attribution text */
+  *[style*="bottom"][style*="right"]:has-text("spline"),
+  *[style*="bottom"][style*="right"]:has-text("Spline"),
+  *[style*="bottom"][style*="right"]:has-text("built"),
+  *[style*="bottom"][style*="right"]:has-text("Made"),
+  *[style*="bottom"][style*="right"]:has-text("Powered") {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
   }
 
-  /* Additional Spline watermark hiding for common patterns */
+  /* Additional Spline container cleanup */
   .spline-container div:last-child {
     position: relative;
   }
-  
+
   .spline-container div:last-child > div[style*="bottom"][style*="right"] {
+    display: none !important;
+  }
+
+  /* Hide any bottom-right positioned small elements that might be watermarks */
+  div[style*="position: absolute"][style*="bottom"][style*="right"] {
+    font-size: 0 !important;
+    line-height: 0 !important;
+  }
+
+  div[style*="position: absolute"][style*="bottom"][style*="right"]:empty {
     display: none !important;
   }
 }
