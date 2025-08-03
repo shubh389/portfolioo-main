@@ -150,19 +150,64 @@ export default function Index() {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
+
+  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
     const formData = new FormData(e.currentTarget);
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
+    const subject = formData.get("subject") as string;
     const message = formData.get("message") as string;
 
-    // Create mailto link
-    const subject = `Project Inquiry from ${name}`;
-    const body = `Hi Shubham,\n\nI'm interested in discussing a project with you.\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n\nBest regards,\n${name}`;
-    const mailtoLink = `mailto:shubhamdev9128@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          subject: subject || `Project Inquiry from ${name}`,
+          message,
+        }),
+      });
 
-    window.location.href = mailtoLink;
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitStatus("success");
+        // Open mailto link as backup/primary method
+        if (result.mailtoUrl) {
+          window.location.href = result.mailtoUrl;
+        }
+        // Reset form
+        (e.target as HTMLFormElement).reset();
+      } else {
+        setSubmitStatus("error");
+        console.error("Email sending failed:", result.message);
+      }
+    } catch (error) {
+      setSubmitStatus("error");
+      console.error("Error sending email:", error);
+
+      // Fallback to mailto
+      const mailtoSubject = subject || `Project Inquiry from ${name}`;
+      const mailtoBody = `Hi Shubham,\n\nI'm interested in discussing a project with you.\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n\nBest regards,\n${name}`;
+      const mailtoLink = `mailto:shubhamdev9128@gmail.com?subject=${encodeURIComponent(mailtoSubject)}&body=${encodeURIComponent(mailtoBody)}`;
+      window.location.href = mailtoLink;
+    } finally {
+      setIsSubmitting(false);
+      // Reset status after 3 seconds
+      setTimeout(() => setSubmitStatus("idle"), 3000);
+    }
   };
 
   const copyToClipboard = async (text: string) => {
@@ -257,7 +302,7 @@ export default function Index() {
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-16 items-start">
-            {/* Enhanced Avatar with Particles */}
+            {/* Enhanced Profile Photo with Effects */}
             <motion.div
               initial={{ opacity: 0, x: -100, rotateY: -30 }}
               whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
@@ -265,7 +310,7 @@ export default function Index() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="relative w-96 h-96 mx-auto">
+              <div className="relative w-full max-w-md mx-auto">
                 {/* Floating Particles */}
                 {[...Array(12)].map((_, i) => (
                   <motion.div
@@ -289,47 +334,72 @@ export default function Index() {
                   />
                 ))}
 
-                {/* Main Avatar */}
+                {/* Main Photo Container with Two Opposite Side Curves */}
                 <motion.div
-                  className="w-80 h-80 mx-auto rounded-full bg-gradient-to-r from-cyan-500 via-purple-600 to-pink-500 p-1 relative"
-                  whileHover={{ scale: 1.05, rotate: 5 }}
+                  className="relative w-80 h-80 sm:w-96 sm:h-96 mx-auto shadow-2xl"
+                  whileHover={{ scale: 1.02, rotate: 1 }}
                   transition={{ duration: 0.3 }}
+                  style={{
+                    borderRadius: "100px 20px 100px 20px",
+                    background:
+                      "linear-gradient(135deg, #06b6d4 0%, #a855f7 50%, #ec4899 100%)",
+                    padding: "3px",
+                  }}
                 >
-                  <div className="w-full h-full rounded-full bg-black flex items-center justify-center relative overflow-hidden">
-                    <div className="w-72 h-72 rounded-full bg-gradient-to-br from-gray-800 via-gray-900 to-black flex items-center justify-center relative">
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{
-                          duration: 20,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                      >
-                        <Code2 className="h-28 w-28 text-cyan-400" />
-                      </motion.div>
+                  <div
+                    className="w-full h-full bg-black p-2 relative overflow-hidden"
+                    style={{
+                      borderRadius: "97px 17px 97px 17px",
+                    }}
+                  >
+                    {/* Profile Photo */}
+                    <motion.img
+                      src="https://cdn.builder.io/api/v1/image/assets%2Fc8e502a783604533b5c478ab95726ead%2F199507c874244f0f9e886ac688d4e928?format=webp&width=800"
+                      alt="Shubham Dev - Full Stack Developer"
+                      className="w-full h-full object-cover object-center shadow-xl"
+                      style={{
+                        borderRadius: "95px 15px 95px 15px",
+                      }}
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.3 }}
+                      loading="lazy"
+                    />
 
-                      {/* Tech Icons Orbiting */}
-                      <motion.div
-                        className="absolute inset-0"
-                        animate={{ rotate: -360 }}
-                        transition={{
-                          duration: 30,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                      >
-                        <Database className="absolute top-4 left-1/2 transform -translate-x-1/2 h-6 w-6 text-purple-400" />
-                        <Globe className="absolute right-4 top-1/2 transform -translate-y-1/2 h-6 w-6 text-cyan-400" />
-                        <Bot className="absolute bottom-4 left-1/2 transform -translate-x-1/2 h-6 w-6 text-pink-400" />
-                        <Brain className="absolute left-4 top-1/2 transform -translate-y-1/2 h-6 w-6 text-green-400" />
-                      </motion.div>
-                    </div>
+                    {/* Overlay Gradient */}
+                    <div
+                      className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"
+                      style={{
+                        borderRadius: "95px 15px 95px 15px",
+                      }}
+                    />
+
+                    {/* Decorative Corner Elements */}
+                    <div className="absolute top-4 left-4 w-6 h-6 bg-gradient-to-br from-cyan-400/30 to-transparent rounded-full blur-sm" />
+                    <div className="absolute top-4 right-4 w-4 h-4 bg-gradient-to-br from-purple-400/30 to-transparent rounded-full blur-sm" />
+                    <div className="absolute bottom-4 left-4 w-5 h-5 bg-gradient-to-br from-pink-400/30 to-transparent rounded-full blur-sm" />
+                    <div className="absolute bottom-4 right-4 w-3 h-3 bg-gradient-to-br from-cyan-400/30 to-transparent rounded-full blur-sm" />
+
+                    {/* Tech Icons Orbiting */}
+                    <motion.div
+                      className="absolute inset-0 pointer-events-none"
+                      animate={{ rotate: 360 }}
+                      transition={{
+                        duration: 30,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                    >
+                      <Database className="absolute top-4 left-1/2 transform -translate-x-1/2 h-6 w-6 text-purple-400 opacity-80" />
+                      <Globe className="absolute right-4 top-1/2 transform -translate-y-1/2 h-6 w-6 text-cyan-400 opacity-80" />
+                      <Bot className="absolute bottom-4 left-1/2 transform -translate-x-1/2 h-6 w-6 text-pink-400 opacity-80" />
+                      <Brain className="absolute left-4 top-1/2 transform -translate-y-1/2 h-6 w-6 text-green-400 opacity-80" />
+                    </motion.div>
                   </div>
                 </motion.div>
 
                 {/* Status Indicator */}
                 <motion.div
-                  className="absolute -top-2 -right-2 bg-green-400 rounded-full p-3 border-4 border-black"
+                  className="absolute -top-2 -right-2 bg-green-400 rounded-full p-3 border-4 border-black shadow-lg"
                   animate={{
                     scale: [1, 1.2, 1],
                     boxShadow: [
@@ -342,6 +412,22 @@ export default function Index() {
                 >
                   <Sparkles className="h-6 w-6 text-black" />
                 </motion.div>
+
+                {/* Responsive adjustments for mobile */}
+                <style jsx>{`
+                  @media (max-width: 640px) {
+                    .relative > .motion-div {
+                      width: 300px;
+                      height: 300px;
+                    }
+                  }
+                  @media (max-width: 480px) {
+                    .relative > .motion-div {
+                      width: 250px;
+                      height: 250px;
+                    }
+                  }
+                `}</style>
               </div>
             </motion.div>
 
@@ -974,10 +1060,52 @@ export default function Index() {
                     {/* Submit Button */}
                     <Button
                       type="submit"
-                      className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 py-2 sm:py-3"
+                      disabled={isSubmitting}
+                      className={`w-full transition-all duration-300 transform hover:scale-105 py-2 sm:py-3 ${
+                        submitStatus === "success"
+                          ? "bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700"
+                          : submitStatus === "error"
+                            ? "bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700"
+                            : "bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700"
+                      } disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none`}
                     >
-                      <Send className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-                      <span className="text-sm sm:text-base">Send Message</span>
+                      {isSubmitting ? (
+                        <>
+                          <motion.div
+                            className="h-4 w-4 sm:h-5 sm:w-5 mr-2 border-2 border-white border-t-transparent rounded-full"
+                            animate={{ rotate: 360 }}
+                            transition={{
+                              duration: 1,
+                              repeat: Infinity,
+                              ease: "linear",
+                            }}
+                          />
+                          <span className="text-sm sm:text-base">
+                            Sending...
+                          </span>
+                        </>
+                      ) : submitStatus === "success" ? (
+                        <>
+                          <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+                          <span className="text-sm sm:text-base">
+                            Message Sent!
+                          </span>
+                        </>
+                      ) : submitStatus === "error" ? (
+                        <>
+                          <Send className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+                          <span className="text-sm sm:text-base">
+                            Try Again
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          <Send className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+                          <span className="text-sm sm:text-base">
+                            Send Message
+                          </span>
+                        </>
+                      )}
                     </Button>
                   </form>
                 </CardContent>
