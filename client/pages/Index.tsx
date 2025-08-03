@@ -404,75 +404,7 @@ export default function Index() {
                   that empower users and solve real-world challenges through innovative technology.
                 </motion.p>
 
-                {/* Horizontal Scrolling Tools Animation */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 1.1 }}
-                  className="mt-8"
-                >
-                  <h4 className="text-sm font-semibold text-gray-400 mb-4 uppercase tracking-wider">
-                    Technologies & Tools
-                  </h4>
-                  <div className="relative overflow-hidden rounded-lg bg-white/5 border border-white/10 p-4">
-                    <motion.div
-                      className="flex space-x-8 items-center"
-                      animate={{
-                        x: [0, -1200],
-                      }}
-                      transition={{
-                        duration: 20,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
-                    >
-                      {/* First set of tools */}
-                      {[
-                        { name: "React", icon: "⚛️", color: "text-blue-400" },
-                        { name: "TypeScript", icon: "📘", color: "text-blue-600" },
-                        { name: "Node.js", icon: "🟢", color: "text-green-400" },
-                        { name: "Python", icon: "🐍", color: "text-yellow-400" },
-                        { name: "Next.js", icon: "▲", color: "text-white" },
-                        { name: "PostgreSQL", icon: "🐘", color: "text-blue-500" },
-                        { name: "MongoDB", icon: "🍃", color: "text-green-500" },
-                        { name: "Docker", icon: "🐳", color: "text-blue-400" },
-                        { name: "AWS", icon: "☁️", color: "text-orange-400" },
-                        { name: "Git", icon: "📝", color: "text-orange-500" },
-                        { name: "GraphQL", icon: "🔗", color: "text-pink-400" },
-                        { name: "Prisma", icon: "💎", color: "text-indigo-400" },
-                        { name: "Tailwind", icon: "🎨", color: "text-cyan-400" },
-                        { name: "Framer Motion", icon: "✨", color: "text-purple-400" },
-                        { name: "Three.js", icon: "🎲", color: "text-yellow-300" },
-                        { name: "Solidity", icon: "💰", color: "text-gray-300" },
-                        { name: "Web3", icon: "🌐", color: "text-blue-300" },
-                        { name: "AI/ML", icon: "🤖", color: "text-green-300" },
-                      ].concat([
-                        // Duplicate for seamless loop
-                        { name: "React", icon: "⚛️", color: "text-blue-400" },
-                        { name: "TypeScript", icon: "📘", color: "text-blue-600" },
-                        { name: "Node.js", icon: "🟢", color: "text-green-400" },
-                        { name: "Python", icon: "🐍", color: "text-yellow-400" },
-                        { name: "Next.js", icon: "▲", color: "text-white" },
-                        { name: "PostgreSQL", icon: "🐘", color: "text-blue-500" },
-                        { name: "MongoDB", icon: "🍃", color: "text-green-500" },
-                        { name: "Docker", icon: "🐳", color: "text-blue-400" },
-                        { name: "AWS", icon: "☁️", color: "text-orange-400" },
-                        { name: "Git", icon: "📝", color: "text-orange-500" },
-                      ]).map((tool, index) => (
-                        <motion.div
-                          key={`${tool.name}-${index}`}
-                          className="flex-shrink-0 flex items-center space-x-3 px-4 py-2 bg-white/5 rounded-full border border-white/10 hover:border-cyan-400/50 transition-colors duration-300"
-                          whileHover={{ scale: 1.05, y: -2 }}
-                        >
-                          <span className="text-xl">{tool.icon}</span>
-                          <span className={`text-sm font-medium ${tool.color} whitespace-nowrap`}>
-                            {tool.name}
-                          </span>
-                        </motion.div>
-                      ))}
-                    </motion.div>
-                  </div>
-                </motion.div>
+
               </div>
 
               {/* Info Cards Grid */}
